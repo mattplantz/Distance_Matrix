@@ -21,7 +21,6 @@ else:
        locs = locs.set_index('ID')
 
 
-@st.cache_data
 def create_dist_matrix(locs: pd.DataFrame):
     dist = pd.DataFrame(index=locs.index,
                                   columns=locs.index)
