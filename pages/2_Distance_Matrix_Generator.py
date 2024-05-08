@@ -42,7 +42,7 @@ def create_dist_matrix(locs: pd.DataFrame):
             dist.at[orig, dest] = route_1
     return dist
 
-if uploaded_file:
+if uploaded_file or 'locs' in st.session_state:
     dist = create_dist_matrix(locs)
     dist = dist.astype(float)
     st.dataframe(dist)
