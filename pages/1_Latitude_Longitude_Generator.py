@@ -26,6 +26,7 @@ if uploaded_file:
   locs = locs[['latitude','longitude']]
   if 'locs' not in st.session_state:
       st.session_state.locs = locs
+  locs = locs.reset_index()
   csv = convert_df(locs)
   st.download_button(
          "Click to Download Output",
