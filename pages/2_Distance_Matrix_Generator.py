@@ -11,6 +11,7 @@ st.title("Distance Matrix Generator")
 
 if 'locs' in st.session_state:
    locs = st.session_state.locs
+   uploaded_file = True
 else:
    st.write("Please ensure the file you upload has the following headers: ID | latitude | longitude")
    uploaded_file = st.file_uploader(label = "Please upload transfer data here", type = ['xlsx'], accept_multiple_files= False)
@@ -42,7 +43,7 @@ def create_dist_matrix(locs: pd.DataFrame):
             dist.at[orig, dest] = route_1
     return dist
 
-if uploaded_file or 'locs' in st.session_state:
+if uploaded_file:
     dist = create_dist_matrix(locs)
     dist = dist.astype(float)
     st.dataframe(dist)
