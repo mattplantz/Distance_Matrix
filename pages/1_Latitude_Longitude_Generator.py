@@ -28,6 +28,7 @@ if uploaded_file:
       st.session_state.locs = locs
   locs = locs.reset_index()
   csv = convert_df(locs)
+  st.success('Latitude and Longitudes found successfully')
   st.download_button(
          "Click to Download Output",
          csv,
