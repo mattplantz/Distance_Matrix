@@ -9,14 +9,18 @@ def convert_df(df):
 
 st.title("Distance Matrix Generator")
 
-st.write("Please ensure the file you upload has the following headers: ID | latitude | longitude")
-uploaded_file = st.file_uploader(label = "Please upload transfer data here", type = ['xlsx'], accept_multiple_files= False)
-if uploaded_file:
-    st.success("Upload Successful")
-    locs = pd.read_excel(uploaded_file)
-    locs = locs.set_index('ID')
-elif 'locs' in st.session_state:
-    locs = st.session_state.locs
+opt = st.radio(label = "Select option for latitude and longitude data", ["file upload","From Lat/Lon Module"])
+
+if opt == "file upload":
+   st.write("Please ensure the file you upload has the following headers: ID | latitude | longitude")
+   uploaded_file = st.file_uploader(label = "Please upload transfer data here", type = ['xlsx'], accept_multiple_files= False)
+   if uploaded_file:
+       st.success("Upload Successful")
+       locs = pd.read_excel(uploaded_file)
+       locs = locs.set_index('ID')
+elif opt == "From Lat/Lon Module":
+   locs = st.session_state.locs
+
 @st.cache_data
 def create_dist_matrix(locs: pd.DataFrame):
     dist = pd.DataFrame(index=locs.index,
