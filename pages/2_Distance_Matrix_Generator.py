@@ -9,9 +9,7 @@ def convert_df(df):
 
 st.title("Distance Matrix Generator")
 
-opt = st.radio(label = "Select option for latitude and longitude data", options = ["file upload","From Lat/Lon Module"])
-
-if opt == "From Lat/Lon Module":
+if 'locs' in st.session_state:
    locs = st.session_state.locs
 else:
    st.write("Please ensure the file you upload has the following headers: ID | latitude | longitude")
