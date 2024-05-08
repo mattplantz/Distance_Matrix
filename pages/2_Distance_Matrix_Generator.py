@@ -47,6 +47,7 @@ if uploaded_file:
     dist = create_dist_matrix(locs)
     dist = dist.astype(float)
     st.dataframe(dist)
+    dist = dist.reset_index()
     csv = convert_df(dist)
     st.download_button(
            "Press to Download",
